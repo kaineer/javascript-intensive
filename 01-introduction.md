@@ -10,7 +10,7 @@
 
 Пример:
 
-```
+```.javascript
 if (typeof(a) === "number") {
   return "Передано число, да!";
 } else if (typeof(a) === "string") {
