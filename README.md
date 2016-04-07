@@ -1,1 +1,2 @@
-# Часто встречающиеся ошибки в процессе прохождения javascript intensive
+# Javascript intensive
+## Частовстречающиеся ошибки
