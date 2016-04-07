@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](SUMMARY.md)
+* [Content](SUMMARY.md)
 * [README](README.md)
 * [Введение](modules/01-introduction.md)
 
