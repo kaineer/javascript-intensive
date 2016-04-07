@@ -55,7 +55,7 @@ if (Array.isArray(a) && Array.isArray(b)) {
 ```.javascript
 if (Array.isArray(a)) {
   if (Array.isArray(b)) {
-    return  "Ух ты, целых два массива!";
+    return "Ух ты, целых два массива!";
   }
   
   return "Ух ты, целый массив!";
