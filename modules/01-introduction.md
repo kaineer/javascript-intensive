@@ -8,7 +8,7 @@
 
 #### Как делать не надо
 
-```.javascript
+``` javascript
 if (typeof(a) === "boolean") {
   if (a === true) {
      return "Нет, ну правда же, правда?";
@@ -18,7 +18,7 @@ if (typeof(a) === "boolean") {
 
 #### Как будет короче и понятней
 
-```.javascript
+``` javascript
 if (typeof(a) === "boolean") {
   if (a) {
      return "Правда, только правда и ничего, кроме правды";
@@ -38,7 +38,7 @@ if (typeof(a) === "boolean") {
 
 #### Неправильный подход
 
-```.javascript
+``` javascript
 if (Array.isArray(a)) {
   return "Ух ты, целый массив!";
 }
@@ -52,12 +52,12 @@ if (Array.isArray(a) && Array.isArray(b)) {
 
 #### Правильный подход
 
-```.javascript
+``` javascript
 if (Array.isArray(a)) {
   if (Array.isArray(b)) {
     return "Ух ты, целых два массива!";
   }
-  
+
   return "Ух ты, целый массив!";
 }
 ```
@@ -68,7 +68,7 @@ if (Array.isArray(a)) {
 
 #### Как, по-моему, некрасиво
 
-```.javascript
+``` javascript
 if (typeof(a) === "number") {
   return "Передано число, да!";
 } else if (typeof(a) === "string") {
@@ -78,7 +78,7 @@ if (typeof(a) === "number") {
 
 #### Как предлагаю я
 
-```.javascript
+``` javascript
 if (typeof(a) === "number") {
   return "Глянь-ка, ты передал число!";
 }
@@ -101,7 +101,7 @@ if (typeof(a) === "string") {
 
 #### Если мы ничего не подозреваем
 
-```.javascript
+``` javascript
 for(var i = 0; i < a.length; i++) {
   sum += a[i] * b[i];
 }
@@ -111,7 +111,7 @@ for(var i = 0; i < a.length; i++) {
 
 #### Постоянная бдительность
 
-```.javascript
+``` javascript
 var minLength = Math.min(a.length, b.length);
 for(var i = 0; i < minLength; i++) {
   sum += a[i] * b[i];
@@ -123,12 +123,12 @@ for(var i = 0; i < minLength; i++) {
 ### Объявление переменной в цикле
 
 Само по себе объявление переменной внутри `for` ничего страшного не сделает.
-Ведь на самом деле переменная всё-равно объявляется на всю функцию и будет видна 
+Ведь на самом деле переменная всё-равно объявляется на всю функцию и будет видна
 в пределах функции, но кое-что может пойти не так, пусть даже и не в этот раз.
 
 #### Что может пойти не так?
 
-```.javascript
+``` javascript
 if (Array.isArray(b)) {
    for(var i = 0; i < b.length; i++) { ... }
 } else {
@@ -142,7 +142,7 @@ if (Array.isArray(b)) {
 
 Выносим переменную в верхнюю часть функции и убираем `var` из цикла. Всё.
 
-```.javascript
+``` javascript
 var i;
 // ...
 if (Array.isArray(b)) {
@@ -158,7 +158,7 @@ if (Array.isArray(b)) {
 
 #### Так хуже
 
-```.javascript
+``` javascript
 for(var i = 0; i < a.length; i++) {
   sum += a[i];
 }
@@ -166,7 +166,7 @@ for(var i = 0; i < a.length; i++) {
 
 #### Так лучше
 
-```.javascript
+``` javascript
 var arrayLength = a.length;
 for(var i = 0; i < arrayLength; i++) {
   sum += a[i];
@@ -177,7 +177,7 @@ for(var i = 0; i < arrayLength; i++) {
 
 но этот материал изучается чуть позже :)
 
-```.javascript
+``` javascript
 var sum = a.inject(function(sum, value) { return sum + value; }, 0);
 ```
 
@@ -185,7 +185,7 @@ var sum = a.inject(function(sum, value) { return sum + value; }, 0);
 
 На самом деле, в рамках этого задания нет необходимости выяснять, является ли параметр массивом. Как так? А вот так: после того как мы выяснили, что первый параметр – не логическое значение и не число, для `a` и `b` остаётся только два варианта: массив или `undefined`. Для того, чтобы это проверить достаточно после предыдущих проверок сделать:
 
-```.javascript
+``` javascript
 if(a) {
    if(b) {
      return "a и b - массивы!";
