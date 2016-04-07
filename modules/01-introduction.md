@@ -168,7 +168,7 @@ for(var i = 0; i < a.length; i++) {
 
 ```.javascript
 var arrayLength = a.length;
-for(var i = 0; i < a.length; i++) {
+for(var i = 0; i < arrayLength; i++) {
   sum += a[i];
 }
 ```
