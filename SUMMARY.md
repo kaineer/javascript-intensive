@@ -1,4 +1,5 @@
-# Содержание
+# Summary
 
-* [Введение](modules/01-introduction.md)
+* [Introduction](README.md)
+* [1. Введение](modules/01-introduction.md)
 
