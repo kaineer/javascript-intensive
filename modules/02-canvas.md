@@ -94,18 +94,22 @@ ctx.fillRect(resizerSide / 2, resizerSide / 2, resizerSide, (height - resizerSid
 // Инициализация переменных и стиля
 // .. приведена в предыдущем куске кода
 
+ctx.beginPath();
+
 // Внешний контур
 ctx.rect(-width / 2, -height / 2, width, height);
 
 // Внутренний контур
-ctx.beginPath();
 ctx.moveTo(-resizerSide / 2, -resizerSide / 2);
 ctx.lineTo(-resizerSide / 2,  resizerSide / 2);
 ctx.lineTo( resizerSide / 2,  resizerSide / 2);
 ctx.lineTo( resizerSide / 2, -resizerSide / 2);
+
 ctx.closePath();
 
 ctx.fill("evenodd");
 ```
 
 "Ни единого разрыва!" &copy;
+
+[Живой пример](http://codepen.io/kaineer/pen/jqwzJr?editors=1010) на codepen.io.
