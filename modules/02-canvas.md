@@ -28,7 +28,7 @@ this._ctx.closePath();
 #### А если не стрелять себе в ногу
 
 ``` javascript
-var halfSide = (this.container.width + this._resizer.width) / 2;
+var halfSide = (this.container.width - this._resizer.width) / 2;
 var ctx = this._ctx;
 
 ctx.beginPath();
