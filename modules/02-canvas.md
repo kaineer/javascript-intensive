@@ -11,6 +11,7 @@
 #### Как это может выглядеть в коде:
 
 ``` javascript
+ctx.beginPath();
 this._ctx.moveTo(-this.container.width / 2 + this._resizer.width / 2,
                  -this.container.width / 2 + this._resizer.width / 2);
 this._ctx.lineTo(this.container.width / 2 - this._resizer.width / 2,
@@ -22,7 +23,7 @@ this._ctx.lineTo(-this.container.width / 2 + this._resizer.width / 2,
 this._ctx.closePath();
 ```
 
-А теперь представим себе, что нам понадобилось добавить в этот повторяющийся кусочек `(this.container.width - this._resizer.width) / 2` ещё какую-нибудь величину. Будете редактировать все восемь строчек? И ни разу не ошибётесь? Если да, запишите, пожалуйста, скринкаст, я посмотрю.
+А теперь представим себе, что нам понадобилось добавить в этот повторяющийся кусочек `this.container.width / 2 - this._resizer.width / 2` ещё какую-нибудь величину. Будете редактировать все восемь строчек? И ни разу не ошибётесь? Если да, запишите, пожалуйста, скринкаст, я посмотрю.
 
 #### А если не стрелять себе в ногу
 
@@ -30,6 +31,7 @@ this._ctx.closePath();
 var halfSide = (this.container.width + this._resizer.width) / 2;
 var ctx = this._ctx;
 
+ctx.beginPath();
 ctx.moveTo(-halfSide, -halfSide);
 ctx.lineTo(halfSide, -halfSide);
 ctx.lineTo(halfSide, halfSide);
@@ -55,12 +57,55 @@ ctx.closePath();
 
 > Доработайте функцию `redraw` в объекте `Resizer` в файле `js/resizer.js` таким образом, чтобы вокруг жёлтой рамки, рисующей ограничение, рисовался чёрный слой с прозрачностью 80% используя методы холста, который хранится в переменной `this._ctx`.
 
-Давайте нарисуем затемнение.
+Давайте нарисуем затемнение, пусть даже без учета ширины линии.
 
 #### Попытка 1
 
+Рисуем четыре прямоугольника: слева от рамки на весь контейнер по высоте, справа от рамки, тоже на весь контейнер и ещё два прямоугольника в оставшиеся места сверху и снизу от рамки.
+
 ``` javascript
+// Инициализация переменных
+var ctx = this._ctx;
+var width = this.container.width;
+var height = this.container.height;
+var resizerSide = this.resizer.side;
+// .. и стиля
+ctx.fillStyle = "rgb(0, 0, 0, 0.8)";
 
-
-
+// Прямоугольник слева
+ctx.fillRect(-width / 2, -height / 2, (width - resizerSide) / 2, heigt);
+// Прямоугольник справа
+ctx.fillRect(resizerSide / 2, -height / 2, (width - resizerSide) / 2, heigt);
+// Сверху
+ctx.fillRect(-resizerSide / 2, -height / 2, resizerSide, (height - resizerSide) / 2);
+// Снизу
+ctx.fillRect(resizerSide / 2, resizerSide / 2, resizerSide, (height - resizerSide) / 2);
 ```
+
+Всё сравнительно просто, понятно, но есть одно неприятное **но**. На границах стыковки прямоугольников видны либо "просветы", либо "наползания".
+
+#### Попытка 2
+
+А теперь давайте сделаем так, как предлагается в вебинаре. (Ну или почти предлагается. Во всяком случае, намёк в демках теперь точно есть).
+
+Нарисуем два контура, один по периметру контейнера, по часовой стрелке, другой по периметру рамки, против часовой стрелки. И выполним `fill("evenodd")`:
+
+``` javascript
+// Инициализация переменных и стиля
+// .. приведена в предыдущем куске кода
+
+// Внешний контур
+ctx.rect(-width / 2, -height / 2, width, height);
+
+// Внутренний контур
+ctx.beginPath();
+ctx.moveTo(-resizerSide / 2, -resizerSide / 2);
+ctx.lineTo(-resizerSide / 2,  resizerSide / 2);
+ctx.lineTo( resizerSide / 2,  resizerSide / 2);
+ctx.lineTo( resizerSide / 2, -resizerSide / 2);
+ctx.closePath();
+
+ctx.fill("evenodd");
+```
+
+"Ни единого разрыва!" &copy;
