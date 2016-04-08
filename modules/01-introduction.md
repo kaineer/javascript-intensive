@@ -102,7 +102,7 @@ if (typeof(a) === "string") {
 #### Если мы ничего не подозреваем
 
 ``` javascript
-for(var i = 0; i < a.length; i++) {
+for (var i = 0; i < a.length; i++) {
   sum += a[i] * b[i];
 }
 ```
@@ -113,7 +113,7 @@ for(var i = 0; i < a.length; i++) {
 
 ``` javascript
 var minLength = Math.min(a.length, b.length);
-for(var i = 0; i < minLength; i++) {
+for (var i = 0; i < minLength; i++) {
   sum += a[i] * b[i];
 }
 ```
@@ -130,9 +130,9 @@ for(var i = 0; i < minLength; i++) {
 
 ``` javascript
 if (Array.isArray(b)) {
-   for(var i = 0; i < b.length; i++) { ... }
+   for (var i = 0; i < b.length; i++) { ... }
 } else {
-   for(var i = 0; i < a.length; i++) { ... }
+   for (var i = 0; i < a.length; i++) { ... }
 }
 ```
 
@@ -146,9 +146,9 @@ if (Array.isArray(b)) {
 var i;
 // ...
 if (Array.isArray(b)) {
-   for(i = 0; i < b.length; i++) { ... }
+   for (i = 0; i < b.length; i++) { ... }
 } else {
-   for(i = 0; i < a.length; i++) { ... }
+   for (i = 0; i < a.length; i++) { ... }
 }
 ```
 
@@ -159,7 +159,7 @@ if (Array.isArray(b)) {
 #### Так хуже
 
 ``` javascript
-for(var i = 0; i < a.length; i++) {
+for (var i = 0; i < a.length; i++) {
   sum += a[i];
 }
 ```
@@ -168,7 +168,7 @@ for(var i = 0; i < a.length; i++) {
 
 ``` javascript
 var arrayLength = a.length;
-for(var i = 0; i < arrayLength; i++) {
+for (var i = 0; i < arrayLength; i++) {
   sum += a[i];
 }
 ```
