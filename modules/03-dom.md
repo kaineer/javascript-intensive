@@ -138,3 +138,30 @@ reviewName.oninput = function() { handleInputs(); }
 ``` javascript
 reviewName.oninput = handleInputs;
 ```
+
+## Печеньки
+
+### RadioButtonGroup
+
+Есть такой замечательный класс. Объект именно этого типа мы получаем, когда запрашиваем группу радиокнопок из формы. И сейчас я покажу, как **не надо** выставлять значение в такой группе:
+
+``` javascript
+var elems = filterForm['upload-filter'];
+for (var i = 0; i < elems.length; i++) {
+  if (elems[i].value === browserCookies.get('lastFilter')) {
+    elems[i].checked = true;
+    // ...
+  }
+}
+```
+
+Гораздо проще будет сделать так:
+
+``` javascript
+var elems = filterForm['upload-filter'];
+elems.value = browserCookies.get('lastFilter') || defaultFilter;
+```
+
+### Значения по умолчанию
+
+`Cookies` выставляются уже после того, как мы один раз открывали страницу и выполнили на ней какие-то действия, которые привели к их заполнению. Не нужно исходить из того, что если придёт `undefined` всё всё-равно будет хорошо. Как правило, я это проверяю и прошу исправить.
