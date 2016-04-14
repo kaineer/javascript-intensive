@@ -109,3 +109,32 @@ toggleVisibility(reviewLabelText, reviewText.validity.valid);
 
 Реализацию `toggleVisibility` оставляю для разминки извилин.
 
+### Разница между функцией и вызовом
+
+Предположим, есть функция `handleInputs`. И в коде написано:
+
+``` javascript
+reviewName.oninput = handleInputs();
+```
+
+Что при этом происходит?
+
+Происходит очень простая вещь, `handleInput` вызывается в момент присваивания значения `reviewName.oninput` и больше не вызывается никогда.
+
+Как же сделать так, чтобы функция вызывалась?
+
+Можно, конечно, сделать так:
+
+``` javascript
+reviewName.oninput = function() { handleInputs(); }
+```
+
+здесь мы присваиваем в `oninput` новую функцию, которая вызовет функцию `handleInputs`. Способ работающий, но избыточный.
+
+Избыточный потому, что *новая функция нам не нужна*.
+
+Гораздо проще использовать имя функции, без круглых скобок:
+
+``` javascript
+reviewName.oninput = handleInputs;
+```
