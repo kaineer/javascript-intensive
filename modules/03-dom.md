@@ -48,7 +48,8 @@ var reviewName = form.elements["review-name"];
 var reviewText = form.elements["review-text"];
 var submit = form.querySelector(".review-submit");
 
-if((reviewMark.value < 3 && reviewText.value) && reviewName.value) {
+if((reviewMark.value < 3 && reviewText.value) && 
+  reviewName.value) {
   submit.disabled = false;
 } else {
   submit.disabled = true;
