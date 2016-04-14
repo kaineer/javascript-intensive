@@ -81,3 +81,30 @@ reviewText.required = reviewMark.value < 3;
 submit.disabled = 
   !(reviewText.validity.valid && reviewName.validity.valid);
 ```
+
+#### Как-то так получилось
+
+Что про избавление от лишних `if` я уже рассказал. Поэтому отдельно говорить о нём не буду. И что-то мне подсказывает, что я про это уже говорил.
+
+### Частоповторяемые действия
+
+Например, скрытие-отображение какой-нибудь метки и т.п. Чтобы каждый раз не писать `if`, рекомендую делать функцию `toggleVisibility`.
+
+#### Убираем такое
+
+``` javascript
+if(reviewText.validity.valid) {
+  reviewLabelText.classList.remove("hidden");
+} else {
+  reviewLabelText.classList.add("hidden");
+}
+```
+
+#### Пишем так
+
+``` javascript
+toggleVisibility(reviewLabelText, reviewText.validity.valid);
+```
+
+Реализацию `toggleVisibility` оставляю для разминки извилин.
+
