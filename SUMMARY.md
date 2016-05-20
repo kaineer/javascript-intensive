@@ -6,3 +6,6 @@
 * [Знакомство с DOM](modules/03-dom.md)
 
 * [Источники информации](modules/0x-sources.md)
+
+* [Ошибки](errors/README.md)
+* [Способы выстрелить себе в ногу](smells/README.md)
